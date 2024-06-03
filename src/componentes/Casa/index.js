@@ -1,24 +1,23 @@
 import Membro from '../Membro'
 import './Casa.css'
+import hexToRgba from 'hex-to-rgba';
 
-const Casa = (props)=>{
-    const css = {backgroundColor: props.corSecundaria}
-    const cssBorder = {borderColor: props.corPrimaria}
+const Casa = ({ casa, membros, aoDeletar, mudarCor, aoFavoritar }) => {
+    return (
 
-    return(
-        (props.membros.length > 0) ? <section className='casa' style={css}>
-            <h3 style={cssBorder}>{props.nome} </h3>
+        membros.length > 0 && <section className='casa' style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: hexToRgba(casa.cor, '0.6')}}>
+            <input onChange={evento => mudarCor(evento.target.value, casa.id)} value={casa.cor} type='color' className='input-cor' />
+            
+            <h3 style={{ borderColor: casa.cor }}>{casa.nome}</h3>
+
             <div className='membros'>
-                {props.membros.map( membro => <Membro 
-                                                    corDeFundo={props.corPrimaria}
-                                                    key={membro.nome}
-                                                    nome={membro.nome} 
-                                                    cargo={membro.cargo} 
-                                                    imagem={membro.imagem} />)}
+                {membros.map((membro, indice) => {
+                    return <Membro key={indice} membro={membro} corDeFundo={casa.cor} aoDeletar={aoDeletar} aoFavoritar={aoFavoritar}/>
+
+                    })
+                }
             </div>
         </section>
-        : ''
     )
 }
-
 export default Casa

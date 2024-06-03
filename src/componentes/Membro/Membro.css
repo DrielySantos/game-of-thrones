@@ -1,5 +1,6 @@
 .membro {
     width: 280px;
+    position: relative;
 }
 
 .membro .cabecalho {
@@ -10,7 +11,7 @@
     width: 100px;
     border-radius: 50px;
     position: relative;
-    bottom: -60px;
+    bottom: -50px;
 }
 
 .membro .rodape {
@@ -34,4 +35,14 @@
     margin-top: -10px;
     color: #212121;
     padding: 0 16px;
+}
+
+.membro .deletar{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+
+.membro .favoritar{
+    margin-top: -10px;
 }

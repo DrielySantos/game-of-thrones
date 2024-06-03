@@ -1,21 +1,21 @@
 import { useState } from 'react'
 import Botao from '../Botao'
-import CampoTexto from '../CampoTexto'
+import Campo from '../Campo'
 import ListaSuspensa from '../ListaSuspensa'
 import './Formulario.css'
 
-const Formulario = (props) => {
+const Formulario = ({aoMembroCadastrado, nomeCasas, cadastrarCasa}) => {
 
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
     const [imagem, setImagem] = useState('')
     const [casa, setCasa] = useState('')
-
-
+    const [nomeCasa, setNomeCasa] = useState('')
+    const [corCasa, setCorCasa] = useState('')
 
     const aoSalvar = (evento) =>{
         evento.preventDefault()
-        props.aoMembroCadastrado({
+        aoMembroCadastrado({
             nome,
             cargo,
             imagem,
@@ -28,25 +28,24 @@ const Formulario = (props) => {
     } 
 
     return(
-        <section className="formulario">
-            
-            <form onSubmit={aoSalvar}>
+        <section className="formulario-container">
+            <form  className="formulario" onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card dos membros das casas</h2>
-                <CampoTexto 
+                <Campo 
                     obrigatorio={true} 
                     label="Nome" 
                     placeholder="Nome do membro da casa" 
                     valor={nome}
                     aoAlterado={valor => setNome(valor)}
                 />
-                <CampoTexto 
+                <Campo 
                     obrigatorio={true} 
                     label="Cargo" 
                     placeholder="Digite o cargo" 
                     valor={cargo}
                     aoAlterado={valor => setCargo(valor)}
                     />
-                <CampoTexto 
+                <Campo 
                     label="Imagem" 
                     placeholder="Digite o endereço da imagem" 
                     valor={imagem}
@@ -55,16 +54,35 @@ const Formulario = (props) => {
                 <ListaSuspensa 
                     obrigatorio={true} 
                     label="Casa" 
-                    itens={props.nomeCasas} 
+                    itens={nomeCasas} 
                     valor={casa}
                     aoAlterado={valor => setCasa(valor)}
                 />
-                <Botao>
-                    Criar Card
-                </Botao>
+                <Botao texto='Criar card' />
+            </form>
+            <form  className="formulario" onSubmit={(evento) =>{
+                evento.preventDefault()
+                cadastrarCasa({ nome: nomeCasa, cor: corCasa})
+            }}>
+                <h2>Preencha os dados para criar uma nova casa</h2>
+                <Campo 
+                    obrigatorio
+                    label="Nome" 
+                    placeholder="Digite o nome da casa" 
+                    valor={nomeCasa}
+                    aoAlterado={valor => setNomeCasa(valor)}
+                />
+                <Campo 
+                    obrigatorio
+                    type='color'
+                    label="Cor" 
+                    placeholder="Estilize a cor da casa" 
+                    valor={corCasa}
+                    aoAlterado={valor => setCorCasa(valor)}
+                />
+                <Botao texto='Criar uma nova casa' />
             </form>
         </section>
     )
 }
-
 export default Formulario
