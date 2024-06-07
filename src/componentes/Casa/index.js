@@ -5,7 +5,7 @@ import hexToRgba from 'hex-to-rgba';
 const Casa = ({ casa, membros, aoDeletar, mudarCor, aoFavoritar }) => {
     return (
 
-        membros.length > 0 && <section className='casa' style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: hexToRgba(casa.cor, '0.6')}}>
+        membros.length > 0 && <section className='casa' style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: hexToRgba(casa.cor, '0.4')}}>
             <input onChange={evento => mudarCor(evento.target.value, casa.id)} value={casa.cor} type='color' className='input-cor' />
             
             <h3 style={{ borderColor: casa.cor }}>{casa.nome}</h3>
