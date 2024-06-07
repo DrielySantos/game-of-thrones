@@ -188,7 +188,10 @@ function App(){
         aoMembroCadastrado={membro => setMembros([...membros, membro])}/>
       
       <section className='casas'>
-        <h1>HOUSES</h1>
+        <div style={{ textAlign: 'center' }}>
+          <h1>HOUSES</h1>
+
+        </div>
         {casas.map((casa, indice) =>
           <Casa
             aoFavoritar={resolverFavorito}
